@@ -1,84 +1,55 @@
 const fs = require('fs');
 const path = require('path');
-const { EmbedBuilder } = require('discord.js');
+const { MessageEmbed } = require('discord.js'); // Make sure to import MessageEmbed
+
 async function viewIssuesCommand(interaction) {
     try {
         // Read and parse the JSON file
         const issuesPath = path.join(__dirname, '../../../db_json/issues.json');
         const data = fs.readFileSync(issuesPath, 'utf-8');
         const issues = JSON.parse(data);
+
         // Filter open issues
         const openIssues = issues.filter(issue => issue.status === 'open');
+
         if (openIssues.length === 0) {
-            const noIssuesEmbed = new EmbedBuilder()
-                .setTitle('🏝️ Issue Tracker')
-                .setDescription('No open issues at the moment! 🎉')
-                .setColor('#2ecc71')
-                .setFooter({ text: 'All clear on the island!' });
-            await interaction.reply({ embeds: [noIssuesEmbed] });
+            await interaction.reply('❌ No open issues found.');
             return;
         }
-        // Create an embed with issues
-        const issuesEmbed = new EmbedBuilder()
-            .setTitle('🚧 Open Issues')
-            .setDescription(`${openIssues.length} active issues need your attention!`)
-            .setColor('#e74c3c')
-            .setTimestamp();
-        // Add each issue as a field
-        openIssues.forEach(issue => {
-            issuesEmbed.addFields({
-                name: `🔍 Issue #${issue.id}: ${issue.title}`,
-                value: `
-**Priority:** ${getPriorityEmoji(issue.priority)}
-**Created:** <t:${Math.floor(new Date(issue.createdAt).getTime() / 1000)}:R>
-**Assigned To:** ${issue.assignedTo || 'Unassigned'}
-                `.trim(),
-                inline: false
-            });
+
+        // Create an embed for each issue
+        const embeds = openIssues.map(issue => {
+            // Select an emoji based on priority
+            const priorityEmoji = {
+                High: '🔴',
+                Medium: '🟠',
+                Low: '🟢'
+            }[issue.priority] || '🟡'; // Default to yellow if priority is missing
+
+            // Construct the embed
+            const issueEmbed = new MessageEmbed()
+                .setColor('#FF5733') // Customize the color
+                .setTitle(`📋 Issue #${issue.id}: ${issue.title}`)
+                .setDescription(issue.description || 'No description available')
+                .addFields(
+                    { name: '🛠️ Status', value: issue.status, inline: true },
+                    { name: `${priorityEmoji} Priority`, value: issue.priority || 'Normal', inline: true },
+                    { name: '👤 Created By', value: issue.createdBy || 'Unknown', inline: true }
+                )
+                .setFooter('📝 Issue Tracker')
+                .setTimestamp(issue.createdAt ? new Date(issue.createdAt) : new Date());
+
+            return issueEmbed;
         });
-        // Add summary field
-        issuesEmbed.addFields({
-            name: '📊 Issue Summary',
-            value: `
-**Total Open Issues:** ${openIssues.length}
-**Highest Priority Issue:** ${getHighestPriorityIssue(openIssues)}
-            `.trim(),
-            inline: false
-        });
-        issuesEmbed.setFooter({ 
-            text: 'Stay on top of your project!', 
-            iconURL: interaction.client.user.displayAvatarURL() 
-        });
-        await interaction.reply({ embeds: [issuesEmbed] });
+
+        // Send each embed as a separate message
+        for (const embed of embeds) {
+            await interaction.reply({ embeds: [embed] });
+        }
     } catch (error) {
         console.error('Error fetching issues:', error);
-        
-        const errorEmbed = new EmbedBuilder()
-            .setTitle('🚨 Error')
-            .setDescription('There was an error retrieving the issues. Please try again later.')
-            .setColor('#ff0000')
-            .setTimestamp();
-        await interaction.reply({ embeds: [errorEmbed], ephemeral: true });
+        await interaction.reply('⚠️ There was an error retrieving the issues. Please try again later.');
     }
 }
-// Helper function to get priority emoji
-function getPriorityEmoji(priority) {
-    switch(priority) {
-        case 'low': return '🟢 Low';
-        case 'medium': return '🟡 Medium';
-        case 'high': return '🔴 High';
-        case 'critical': return '🟣 Critical';
-        default: return '⚪ Unknown';
-    }
-}
-// Helper function to find highest priority issue
-function getHighestPriorityIssue(issues) {
-    const priorityOrder = ['critical', 'high', 'medium', 'low'];
-    const highestPriorityIssue = issues.reduce((highest, current) => {
-        return priorityOrder.indexOf(current.priority) < priorityOrder.indexOf(highest.priority) 
-            ? current 
-            : highest;
-    });
-    return `#${highestPriorityIssue.id} - ${highestPriorityIssue.title}`;
-}
+
 module.exports = viewIssuesCommand;
