@@ -3,6 +3,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { Client, Events, GatewayIntentBits, Collection, MessageActionRow, MessageButton } = require("discord.js");
 const token = process.env.DISCORD_TOKEN;
+const keepAlive = require("./server")
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -87,5 +88,7 @@ async function updateIssueStatus(issueId, status) {
   fs.writeFileSync(issuesPath, JSON.stringify(issues, null, 2), 'utf-8');
 }
 
+
+keepAlive();
 // Log in to Discord with your client's token
 client.login(token);
