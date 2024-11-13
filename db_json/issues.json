@@ -1,13 +1,19 @@
 [
   {
     "id": "1",
-    "title": "UI Button Alignment Issue1",
-    "description": "The buttons in the sidebar are not aligned properly across different screen sizes.",
-    "assignedTo": "1149341766386987059",
+    "title": "Fix navigation bug",
+    "description": "Resolve the issue with the navigation bar not displaying correctly.",
     "status": "open",
-    "progress": "Not Started",
-    "createdAt": "2024-11-13T12:00:00Z",
-    "updatedAt": "2024-11-13T12:00:00Z"
+    "assignedTo": "533906274249605131",
+    "progress": "",
+    "resources": [
+      "hee",
+      "jfjygukgug",
+      "edhdodw",
+      "kjgkgkg",
+      "https://www.google.com",
+      "hkhg"
+    ]
   },
   {
     "id": "2",
@@ -24,7 +30,7 @@
     "title": "Database Query Optimization",
     "description": "Some queries are taking too long to execute, and need to be optimized for performance.",
     "assignedTo": "1149341766386987059",
-    "status": "open",
+    "status": "closed",
     "progress": "Not Started",
     "createdAt": "2024-11-13T12:30:00Z",
     "updatedAt": "2024-11-13T12:30:00Z"
@@ -33,7 +39,7 @@
     "id": "4",
     "title": "Implement Dark Mode",
     "description": "Add a dark mode toggle to improve accessibility for users with visual impairments.",
-    "assignedTo": null,
+    "assignedTo": "1149341766386987059",
     "progress": "Not Started",
     "status": "open",
     "createdAt": "2024-11-13T13:00:00Z",
@@ -78,5 +84,67 @@
     "createdAt": "2024-11-13T15:00:00Z",
     "updatedAt": "2024-11-13T15:00:00Z",
     "status": "open"
+  },
+  {
+    "id": "9",
+    "title": "Issue for Builder",
+    "description": "mervinmandanana",
+    "status": "open",
+    "assignedTo": null,
+    "progress": "",
+    "resources": []
+  },
+  {
+    "id": "10",
+    "title": "Issue for Builder",
+    "description": "qwe",
+    "status": "open",
+    "assignedTo": null,
+    "progress": "",
+    "resources": []
+  },
+  {
+    "id": "11",
+    "title": "Issue for Gatherer",
+    "description": "footer not working",
+    "status": "open",
+    "assignedTo": null,
+    "progress": "",
+    "resources": [],
+    "createdAt": "2024-11-13T11:26:40.901Z",
+    "createdBy": "533906274249605131"
+  },
+  {
+    "id": "12",
+    "title": "Issue for Builder",
+    "description": "lavi ki tat",
+    "status": "open",
+    "assignedTo": null,
+    "progress": "",
+    "resources": [],
+    "createdAt": "2024-11-13T11:41:09.668Z",
+    "createdBy": "533906274249605131"
+  },
+  {
+    "id": "13",
+    "title": "Issue for Builder",
+    "description": "12",
+    "status": "open",
+    "assignedTo": "1149341766386987059",
+    "progress": "",
+    "resources": [],
+    "createdAt": "2024-11-13T11:46:33.585Z",
+    "createdBy": "1149341766386987059"
+  },
+  {
+    "id": "14",
+    "title": "Issue for Builder",
+    "description": "add a navbar",
+    "status": "open",
+    "assignedTo": null,
+    "progress": "",
+    "resources": [],
+    "createdAt": "2024-11-13T11:55:43.204Z",
+    "createdBy": "1149341766386987059"
   }
 ]
