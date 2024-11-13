@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1",
+    "title": "Fix navigation bug",
+    "description": "Resolve the issue with the navigation bar not displaying correctly.",
+    "status": "open",
+    "assignedTo": "1149341766386987059"
+  },
+  {
+    "id": "2",
+    "title": "Update README",
+    "description": "Add more details to the README file for better documentation.",
+    "status": "open",
+    "assignedTo": "1149341766386987059"
+  }
+]
