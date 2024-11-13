@@ -5,6 +5,10 @@
     "description": "Resolve the issue with the navigation bar not displaying correctly.",
     "status": "open",
     "assignedTo": "1149341766386987059",
+    "resources": [
+      "hee",
+      "jfjygukgug"
+    ],
     "progress": ""
   },
   {
@@ -13,6 +17,11 @@
     "description": "Add more details to the README file for better documentation.",
     "status": "open",
     "assignedTo": "1149341766386987059",
-    "progress": ""
+    "progress": "",
+    "resources": [
+      "wewe",
+      "wewe",
+      "weweqwq"
+    ]
   }
 ]
