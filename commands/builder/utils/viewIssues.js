@@ -17,7 +17,7 @@ async function viewIssuesCommand(interaction) {
         }
 
         // Format the issues into a string for the reply
-        const issueList = openIssues.map(issue => `**ID:** ${issue.id}\n**Title:** ${issue.title}\n**Description:** ${issue.description}\n\n`).join('\n');
+        const issueList = openIssues.map(issue => `**ID:** ${issue.id}\n**Title:** ${issue.title}\n\n`).join('\n');
 
         await interaction.reply(`Listing open issues:\n\n${issueList}`);
     } catch (error) {

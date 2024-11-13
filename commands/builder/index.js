@@ -31,32 +31,13 @@ module.exports = {
                         .setRequired(true)))
         .addSubcommand(subcommand =>
             subcommand
-                .setName('log_progress')
-                .setDescription('Log your progress on an issue')
-                .addStringOption(option =>
-                    option.setName('issue_id')
-                        .setDescription('The ID of the issue')
-                        .setRequired(true))
-                .addStringOption(option =>
-                    option.setName('status')
-                        .setDescription('Current status')
-                        .setRequired(true))
-                .addStringOption(option =>
-                    option.setName('notes')
-                        .setDescription('Notes on progress')
-                        .setRequired(true)))
-        .addSubcommand(subcommand =>
-            subcommand
                 .setName('resolve')
                 .setDescription('Mark an issue as resolved')
                 .addStringOption(option =>
                     option.setName('issue_id')
                         .setDescription('The ID of the issue to resolve')
-                        .setRequired(true)))
-        .addSubcommand(subcommand =>
-            subcommand
-                .setName('leaderboard')
-                .setDescription('View the leaderboard')),
+                        .setRequired(true))),
+        
     
     async execute(interaction) {
         const subcommand = interaction.options.getSubcommand();
