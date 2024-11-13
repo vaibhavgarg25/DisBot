@@ -1,27 +1,82 @@
 [
   {
     "id": "1",
-    "title": "Fix navigation bug",
-    "description": "Resolve the issue with the navigation bar not displaying correctly.",
-    "status": "open",
+    "title": "UI Button Alignment Issue1",
+    "description": "The buttons in the sidebar are not aligned properly across different screen sizes.",
     "assignedTo": "1149341766386987059",
-    "resources": [
-      "hee",
-      "jfjygukgug"
-    ],
-    "progress": ""
+    "status": "open",
+    "progress": "Not Started",
+    "createdAt": "2024-11-13T12:00:00Z",
+    "updatedAt": "2024-11-13T12:00:00Z"
   },
   {
     "id": "2",
-    "title": "Update README",
-    "description": "Add more details to the README file for better documentation.",
+    "title": "UI Button Alignment Issue2",
+    "description": "The buttons in the sidebar are across different screen sizes.",
+    "assignedTo": null,
     "status": "open",
+    "progress": "Not Started",
+    "createdAt": "2024-11-13T12:00:00Z",
+    "updatedAt": "2024-11-13T12:00:00Z"
+  },
+  {
+    "id": "3",
+    "title": "Database Query Optimization",
+    "description": "Some queries are taking too long to execute, and need to be optimized for performance.",
     "assignedTo": "1149341766386987059",
-    "progress": "",
-    "resources": [
-      "wewe",
-      "wewe",
-      "weweqwq"
-    ]
+    "status": "open",
+    "progress": "Not Started",
+    "createdAt": "2024-11-13T12:30:00Z",
+    "updatedAt": "2024-11-13T12:30:00Z"
+  },
+  {
+    "id": "4",
+    "title": "Implement Dark Mode",
+    "description": "Add a dark mode toggle to improve accessibility for users with visual impairments.",
+    "assignedTo": null,
+    "progress": "Not Started",
+    "status": "open",
+    "createdAt": "2024-11-13T13:00:00Z",
+    "updatedAt": "2024-11-13T13:00:00Z"
+  },
+  {
+    "id": "5",
+    "title": "Add Error Handling for API Calls",
+    "description": "The app currently doesn't handle API errors gracefully. Add error handling for failed API requests.",
+    "assignedTo": null,
+    "progress": "Not Started",
+    "status": "open",
+    "createdAt": "2024-11-13T13:30:00Z",
+    "updatedAt": "2024-11-13T13:30:00Z"
+  },
+  {
+    "id": "6",
+    "title": "Improve Mobile Responsiveness",
+    "description": "The app layout is not properly responsive on mobile devices, especially in landscape mode.",
+    "assignedTo": null,
+    "progress": "Not Started",
+    "status": "open",
+    "createdAt": "2024-11-13T14:00:00Z",
+    "updatedAt": "2024-11-13T14:00:00Z"
+  },
+  {
+    "id": "7",
+    "title": "Implement Search Functionality",
+    "description": "Add a search bar to allow users to search for issues and tasks within the application.",
+    "assignedTo": null,
+    "progress": "Not Started",
+    "status": "open",
+    "createdAt": "2024-11-13T14:30:00Z",
+    "updatedAt": "2024-11-13T14:30:00Z"
+  },
+  {
+    "id": "8",
+    "title": "Refactor User Profile Page",
+    "description": "The user profile page is cluttered and needs to be reorganized for better usability and readability.",
+    "assignedTo": null,
+    "progress": "Not Started",
+    "createdAt": "2024-11-13T15:00:00Z",
+    "updatedAt": "2024-11-13T15:00:00Z",
+    "status": "open"
   }
 ]
