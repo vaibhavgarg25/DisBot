@@ -146,16 +146,5 @@
     "resources": [],
     "createdAt": "2024-11-13T11:55:43.204Z",
     "createdBy": "1149341766386987059"
-  },
-  {
-    "id": "15",
-    "title": "Issue for Builder",
-    "description": "ayushi",
-    "status": "open",
-    "assignedTo": null,
-    "progress": "",
-    "resources": [],
-    "createdAt": "2024-11-13T16:55:45.834Z",
-    "createdBy": "783670075025784833"
   }
 ]
