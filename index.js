@@ -1,9 +1,9 @@
 require("dotenv").config();
 const fs = require("node:fs");
 const path = require("node:path");
-const { Client, Events, GatewayIntentBits, Collection, MessageActionRow, MessageButton } = require("discord.js");
+const { Client, Events, GatewayIntentBits, Collection, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js"); // Updated for v14
 const token = process.env.DISCORD_TOKEN;
-const keepAlive = require("./server")
+const keepAlive = require("./server");
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -44,50 +44,58 @@ client.on(Events.InteractionCreate, async interaction => {
       await command.execute(interaction);
     } catch (error) {
       console.error(error);
+      const replyContent = "There was an error while executing this command!";
       if (interaction.replied || interaction.deferred) {
-        await interaction.followUp({ content: "There was an error while executing this command!", ephemeral: true });
+        await interaction.followUp({ content: replyContent, ephemeral: true });
       } else {
-        await interaction.reply({ content: "There was an error while executing this command!", ephemeral: true });
+        await interaction.reply({ content: replyContent, ephemeral: true });
       }
     }
   } 
   // Check if interaction is a button
   else if (interaction.isButton()) {
-    // Logic for button interactions
-    const issueId = interaction.customId.split('_')[1]; // Assuming customId is in format 'status_issueId'
+    try {
+      // Parse button customId in format 'status_<status>_<issueId>'
+      const [_, status, issueId] = interaction.customId.split('_');
 
-    if (interaction.customId.startsWith('working')) {
-      await updateIssueStatus(issueId, 'Working');
-      await interaction.reply({ content: `Issue ${issueId} status updated to "Working"`, ephemeral: true });
-    } else if (interaction.customId.startsWith('testing')) {
-      await updateIssueStatus(issueId, 'Testing');
-      await interaction.reply({ content: `Issue ${issueId} status updated to "Testing"`, ephemeral: true });
-    } else if (interaction.customId.startsWith('resolved')) {
-      await updateIssueStatus(issueId, 'Resolved');
-      await interaction.reply({ content: `Issue ${issueId} status updated to "Resolved"`, ephemeral: true });
+      if (['working', 'testing', 'resolved'].includes(status)) {
+        await updateIssueStatus(issueId, status.charAt(0).toUpperCase() + status.slice(1));
+        await interaction.reply({ content: `✅ Issue ${issueId} status updated to "${status.charAt(0).toUpperCase() + status.slice(1)}"`, ephemeral: true });
+      } else {
+        await interaction.reply({ content: `⚠️ Invalid status action attempted.`, ephemeral: true });
+      }
+    } catch (error) {
+      console.error("Error handling button interaction:", error);
+      await interaction.reply({ content: "⚠️ There was an error updating the issue status. Please try again.", ephemeral: true });
     }
   }
 });
 
 // Function to update issue status in JSON
 async function updateIssueStatus(issueId, status) {
-  const fs = require('fs');
   const issuesPath = path.join(__dirname, 'data/issues.json');
+  
+  try {
+    // Read and parse the JSON file
+    const data = fs.readFileSync(issuesPath, 'utf-8');
+    const issues = JSON.parse(data);
 
-  // Read and parse the JSON file
-  const data = fs.readFileSync(issuesPath, 'utf-8');
-  const issues = JSON.parse(data);
+    // Find the issue and update its status
+    const issue = issues.find(issue => issue.id === issueId);
+    if (issue) {
+      issue.status = status;
+    } else {
+      console.error(`No issue found with ID ${issueId}`);
+      return;
+    }
 
-  // Find the issue and update its status
-  const issue = issues.find(issue => issue.id === issueId);
-  if (issue) {
-    issue.status = status;
+    // Write back to the JSON file
+    fs.writeFileSync(issuesPath, JSON.stringify(issues, null, 2), 'utf-8');
+    console.log(`Issue ${issueId} status updated to ${status}`);
+  } catch (error) {
+    console.error("Error updating issue status:", error);
   }
-
-  // Write back to the JSON file
-  fs.writeFileSync(issuesPath, JSON.stringify(issues, null, 2), 'utf-8');
 }
-
 
 keepAlive();
 // Log in to Discord with your client's token
