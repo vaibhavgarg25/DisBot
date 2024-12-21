@@ -62,4 +62,4 @@ We value your feedback! If you encounter any issues or have suggestions for impr
 
 ---
 
-Thank you for being a part of the Virtual Island Community! Together, we can build something amazing. 🌴
+
